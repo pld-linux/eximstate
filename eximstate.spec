@@ -12,9 +12,9 @@ Source3:	%{name}d.init
 Source4:	%{name}d.sysconfig
 Patch0:		%{name}-debug.patch
 URL:		http://www.olliecook.net/projects/eximstate/
-BuildRequires:	rrdtool-devel
 BuildRequires:	ncurses-devel
-PreReq:		/sbin/chkconfig
+BuildRequires:	rrdtool-devel
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/eximstate
@@ -42,8 +42,8 @@ u¿ywa RRDtoola w celu stworzenia graficznej reprezentacji danych.
 Summary:	eximstate client
 Summary(pl):	klient eximstate
 Group:		Networking
-PreReq:		/sbin/chkconfig
 PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 Requires:	exim >= 3.0.0
 
 %description client
@@ -80,6 +80,9 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}d
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/%{name}d
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 /sbin/chkconfig --add %{name}d
 if [ -f %{_var}/lock/subsys/%{name}d ]; then
@@ -108,9 +111,6 @@ if [ "$1" = "0" -a -f %{_var}/lock/subsys/%{name} ]; then
         /etc/rc.d/init.d/%{name} stop 1>&2
 fi
 /sbin/chkconfig --del %{name}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
