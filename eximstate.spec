@@ -72,7 +72,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_localstatedir}}
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh .
-sed -e 's#/usr/local/apache/htdocs/#/home/httpd/html/%{name}/#g' graphrrd.sh \
+sed -e 's#/usr/local/apache/htdocs/#/home/services/httpd/html/%{name}/#g' graphrrd.sh \
 	> $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
