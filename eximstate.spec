@@ -14,7 +14,7 @@ Patch0:		%{name}-debug.patch
 URL:		http://www.olliecook.net/projects/eximstate/
 BuildRequires:	rrdtool-devel
 BuildRequires:	ncurses-devel
-PreReq:         /sbin/chkconfig
+PreReq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/eximstate
@@ -39,18 +39,18 @@ wiadomo¶ci odbitych do serwera. Serwer eximstate zapisuje te dane oraz
 u¿ywa RRDtoola w celu stworzenia graficznej reprezentacji danych.
 
 %package client
-Summary:        eximstate client
-Summary(pl):    klient eximstate
-Group:          Networking
-PreReq:         /sbin/chkconfig
-PreReq:         rc-scripts
-Requires:       exim >= 3.0.0
+Summary:	eximstate client
+Summary(pl):	klient eximstate
+Group:		Networking
+PreReq:		/sbin/chkconfig
+PreReq:		rc-scripts
+Requires:	exim >= 3.0.0
 
 %description client
 eximstate is a server/client project for monitoring a number of Exim
 installations. This is client.
 
-%description -l pl client
+%description client -l pl
 eximstate to klient/serwer do monitorowania instalacji Exima. To jest
 klient.
 
@@ -72,7 +72,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_localstatedir}}
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh .
-sed -e 's#/usr/local/apache/htdocs/#/home/services/httpd/html/%{name}/#g' graphrrd.sh \
+sed -e 's#%{_prefix}/local/apache/htdocs/#/home/services/httpd/html/%{name}/#g' graphrrd.sh \
 	> $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
