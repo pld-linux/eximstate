@@ -1,0 +1,12 @@
+diff -urN eximstate-1.0.org/src/eximstated.c eximstate-1.0/src/eximstated.c
+--- eximstate-1.0.org/src/eximstated.c	Sat Sep 14 19:10:41 2002
++++ eximstate-1.0/src/eximstated.c	Sat Sep 14 19:13:41 2002
+@@ -35,6 +35,8 @@
+ #include "config.h"
+ #include "eximstated.h"
+ 
++extern int debugflag;
++
+ struct config config;
+ 
+ int main (int argc, char **argv) {

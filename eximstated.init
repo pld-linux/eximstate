@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+# eximstatedd	Start/Stop eximstated server
+#
+# chkconfig:	345 85 25
+# description:	eximstated - exim queue statistics
+#
+# processname:	eximstated
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config
+[ -f /etc/sysconfig/eximstated ] && . /etc/sysconfig/eximstated
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+        if [ ! -f /var/lock/subsys/network ]; then
+                # nls "ERROR: Networking is down. %s can't be run." <service>
+                msg_network_down eximstated
+                exit 1
+        fi
+else
+        exit 0
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/eximstated ]; then
+		msg_starting "eximstated"
+		daemon eximstated
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/eximstated
+	else
+		msg_already_running eximstated
+		exit 1
+	fi
+        ;;
+  stop)
+        # Stop daemons.
+	if [ -f /var/lock/subsys/eximstated ]; then
+		msg_stopping eximstated
+		killproc eximstated
+		rm -f /var/lock/subsys/eximstated >/dev/null 2>&1
+	else
+		msg_not_running eximstated
+		exit 1
+	fi	
+        ;;
+  restart)
+        $0 stop
+	$0 start
+        ;;
+  reload)
+	if [ -f /var/lock/subsys/eximstated ]; then
+		msg_reloaging eximstated
+		killproc eximstatedd -HUP
+	else
+		msg_not_running eximstatedd
+		exit 1
+	fi
+	;;
+  force-reload)
+	$0 stop && $0 start
+	exit $?
+	;;
+  status)
+	status eximstated
+	exit $?
+        ;;
+  *)
+        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
+	msg_Usage "$0 {start|stop|status|restart|reload|force-reload}"
+        exit 1
+esac
+
+exit $RETVAL
