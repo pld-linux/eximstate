@@ -1,5 +1,5 @@
-Summary:	monitoring exim installations
-Summary(pl):	monitorowanie instalacji exima
+Summary:	Monitoring exim installations
+Summary(pl):	Monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.0
 Release:	1
@@ -41,7 +41,7 @@ u¿ywa RRDtoola w celu stworzenia graficznej reprezentacji danych.
 
 %package client
 Summary:	eximstate client
-Summary(pl):	klient eximstate
+Summary(pl):	Klient eximstate
 Group:		Networking
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
