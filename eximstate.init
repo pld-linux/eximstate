@@ -2,7 +2,7 @@
 #
 # eximstated	Start/Stop eximstate server
 #
-# chkconfig:	345 85 25
+# chkconfig:	345 86 24
 # description:	eximstate - exim queue statistics
 #
 # processname:	eximstate
