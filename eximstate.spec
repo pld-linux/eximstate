@@ -87,29 +87,29 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add %{name}d
 if [ -f %{_var}/lock/subsys/%{name}d ]; then
-        /etc/rc.d/init.d/%{name}d restart 1>&2
+	/etc/rc.d/init.d/%{name}d restart 1>&2
 else
 	echo "Run \"/usr/sbin/makenewrrd.sh <host>\" for each your monitored host."
-        echo "Run \"/etc/rc.d/init.d/%{name}d start\" to start %{name}d daemon."
+	echo "Run \"/etc/rc.d/init.d/%{name}d start\" to start %{name}d daemon."
 fi
 
 %preun
 if [ "$1" = "0" -a -f %{_var}/lock/subsys/%{name}d ]; then
-        /etc/rc.d/init.d/%{name}d stop 1>&2
+	/etc/rc.d/init.d/%{name}d stop 1>&2
 fi
 /sbin/chkconfig --del %{name}d
 
 %post client
 /sbin/chkconfig --add %{name}
 if [ -f %{_var}/lock/subsys/%{name} ]; then
-        /etc/rc.d/init.d/%{name} restart 1>&2
+	/etc/rc.d/init.d/%{name} restart 1>&2
 else
-        echo "Run \"/etc/rc.d/init.d/%{name} start\" to start %{name} daemon."
+	echo "Run \"/etc/rc.d/init.d/%{name} start\" to start %{name} daemon."
 fi
 
 %preun client
 if [ "$1" = "0" -a -f %{_var}/lock/subsys/%{name} ]; then
-        /etc/rc.d/init.d/%{name} stop 1>&2
+	/etc/rc.d/init.d/%{name} stop 1>&2
 fi
 /sbin/chkconfig --del %{name}
 
