@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://www.olliecook.net/projects/%{name}/%{name}.tar.gz
+# Source0-md5:	e59355c849577dc5354e2614a5246aba
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}d.init
