@@ -5,7 +5,7 @@ Version:	1.1
 Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://www.olliecook.net/projects/eximstate/%{name}-%{version}.tar.gz
+Source0:	http://www.olliecook.net/projects/eximstate/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	e59355c849577dc5354e2614a5246aba
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
