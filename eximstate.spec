@@ -3,19 +3,18 @@ Summary(pl):	monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.0
 Release:	1
-URL:		http://www.olliecook.net/projects/eximstate/
+License:	GPL
+Group:		Applications/Mail
 Source0:	http://www.olliecook.net/projects/%{name}/%{name}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}d.init
 Source4:	%{name}d.sysconfig
 Patch0:		%{name}-debug.patch
-License:	GPL
-Group:		Applications/Mail
-PreReq:         /sbin/chkconfig
-PreReq:         rc-scripts
+URL:		http://www.olliecook.net/projects/eximstate/
 BuildRequires:	rrdtool-devel
 BuildRequires:	ncurses-devel
+PreReq:         /sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/eximstate
@@ -67,9 +66,7 @@ klient.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
-install -d $RPM_BUILD_ROOT%{_localstatedir}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_localstatedir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
