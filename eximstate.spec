@@ -1,11 +1,11 @@
 Summary:	Monitoring exim installations
 Summary(pl):	Monitorowanie instalacji exima
 Name:		eximstate
-Version:	1.0
-Release:	2
+Version:	1.1
+Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://www.olliecook.net/projects/%{name}/%{name}.tar.gz
+Source0:	http://www.olliecook.net/projects/eximstate/%{name}-%{version}.tar.gz
 # Source0-md5:	e59355c849577dc5354e2614a5246aba
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
@@ -73,7 +73,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_localstatedir}}
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh .
-sed -e 's#%{_prefix}/local/apache/htdocs/#/srv/httpd/html/%{name}/#g' graphrrd.sh \
+sed -e 's#%{_prefix}/local/apache/htdocs/#/home/services/httpd/html/%{name}/#g' graphrrd.sh \
 	> $RPM_BUILD_ROOT%{_sbindir}/graphrrd.sh
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
