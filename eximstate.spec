@@ -32,7 +32,7 @@ to make a graphical representations of the data.
 
 %description -l pl
 eximstate to klient/serwer do monitorowania instalacji Exima. Klienci
-instalowania na ka¿dym serwerze poczty pracuj±cym pod kontrol± Exima
+zainstalowani s± na ka¿dym serwerze poczty pracuj±cym pod kontrol± Exima
 oraz serwer pracuj±cy na serwerze monitoruj±cym. Ka¿dy klient czyta
 kolejkê na serwerze pocztowym oraz przesy³a informacje o ca³kowitej
 liczbie wiadomo¶ci, liczbie zamro¿onych wiadomo¶ci oraz licznie
