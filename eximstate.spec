@@ -2,7 +2,7 @@ Summary:	Monitoring exim installations
 Summary(pl):	Monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://www.olliecook.net/projects/eximstate/releases/%{name}-%{version}.tar.gz
@@ -14,7 +14,7 @@ Source4:	%{name}d.sysconfig
 Patch0:		%{name}-debug.patch
 URL:		http://www.olliecook.net/projects/eximstate/
 BuildRequires:	ncurses-devel
-BuildRequires:	rrdtool-devel
+BuildRequires:	rrdtool-devel >= 1.2.10
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
