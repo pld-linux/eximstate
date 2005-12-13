@@ -34,8 +34,8 @@ to make a graphical representations of the data.
 eximstate to klient/serwer do monitorowania instalacji Exima. Klienty
 zainstalowane s± na ka¿dym serwerze poczty pracuj±cym pod kontrol±
 Exima natomiast serwer eximstate na serwerze monitoruj±cym. Ka¿dy
-klient czyta kolejkê na serwerze pocztowym oraz przesy³a informacje
-o ca³kowitej liczbie wiadomo¶ci, liczbie wiadomo¶ci zamro¿onych oraz
+klient czyta kolejkê na serwerze pocztowym oraz przesy³a informacje o
+ca³kowitej liczbie wiadomo¶ci, liczbie wiadomo¶ci zamro¿onych oraz
 odbitych. Serwer eximstate zapisuje te dane oraz u¿ywa RRDtoola w celu
 stworzenia graficznej reprezentacji danych.
 
@@ -43,9 +43,9 @@ stworzenia graficznej reprezentacji danych.
 Summary:	eximstate client
 Summary(pl):	Klient eximstate
 Group:		Networking
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	exim >= 3.0.0
+Requires:	rc-scripts
 
 %description client
 eximstate is a server/client project for monitoring a number of Exim
@@ -61,7 +61,7 @@ pakiet zawiera klienta.
 
 %build
 %configure \
-	CPPFLAGS="-I%{_includedir}/ncurses" \
+	CPPFLAGS="-I/usr/include/ncurses" \
 	--with-rrdtool=%{_prefix}
 %{__make}
 
