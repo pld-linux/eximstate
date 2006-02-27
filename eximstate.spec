@@ -104,7 +104,6 @@ fi
 
 %preun client
 if [ "$1" = "0" ]; then
-	/etc/rc.d/init.d/%{name} stop 1>&2
 	%service %{name} stop
 	/sbin/chkconfig --del %{name}
 fi
