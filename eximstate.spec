@@ -2,7 +2,7 @@ Summary:	Monitoring exim installations
 Summary(pl):	Monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://www.olliecook.net/projects/eximstate/releases/%{name}-%{version}.tar.gz
@@ -14,6 +14,7 @@ Source4:	%{name}d.sysconfig
 Patch0:		%{name}-debug.patch
 URL:		http://www.olliecook.net/projects/eximstate/
 BuildRequires:	ncurses-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	rrdtool-devel >= 1.2.10
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,32 +87,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add %{name}d
-if [ -f %{_var}/lock/subsys/%{name}d ]; then
-	/etc/rc.d/init.d/%{name}d restart 1>&2
-else
-	echo "Run \"/usr/sbin/makenewrrd.sh <host>\" for each your monitored host."
-	echo "Run \"/etc/rc.d/init.d/%{name}d start\" to start %{name}d daemon."
+if [ "$1" = 1 ]; then
+	echo "Run \"%{_sbindir}/makenewrrd.sh <host>\" for each your monitored host."
 fi
+%service %{name}d restart "%{name}d daemon"
 
 %preun
-if [ "$1" = "0" -a -f %{_var}/lock/subsys/%{name}d ]; then
-	/etc/rc.d/init.d/%{name}d stop 1>&2
+if [ "$1" = "0" ]; then
+	%service %{name}d stop
+	/sbin/chkconfig --del %{name}d
 fi
-/sbin/chkconfig --del %{name}d
 
 %post client
 /sbin/chkconfig --add %{name}
-if [ -f %{_var}/lock/subsys/%{name} ]; then
-	/etc/rc.d/init.d/%{name} restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/%{name} start\" to start %{name} daemon."
-fi
+%service %{name} restart "%{name} daemon"
 
 %preun client
-if [ "$1" = "0" -a -f %{_var}/lock/subsys/%{name} ]; then
+if [ "$1" = "0" ]; then
 	/etc/rc.d/init.d/%{name} stop 1>&2
+	%service %{name} stop
+	/sbin/chkconfig --del %{name}
 fi
-/sbin/chkconfig --del %{name}
 
 %files
 %defattr(644,root,root,755)
