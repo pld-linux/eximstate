@@ -1,3 +1,4 @@
+# TODO: what non-existing directory in /home/services/httpd/html is used for???
 Summary:	Monitoring exim installations
 Summary(pl):	Monitorowanie instalacji exima
 Name:		eximstate
