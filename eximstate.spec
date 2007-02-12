@@ -1,6 +1,6 @@
 # TODO: what non-existing directory in /home/services/httpd/html is used for???
 Summary:	Monitoring exim installations
-Summary(pl.UTF-8):   Monitorowanie instalacji exima
+Summary(pl.UTF-8):	Monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.1
 Release:	3
@@ -43,7 +43,7 @@ stworzenia graficznej reprezentacji danych.
 
 %package client
 Summary:	eximstate client
-Summary(pl.UTF-8):   Klient eximstate
+Summary(pl.UTF-8):	Klient eximstate
 Group:		Networking
 Requires(post,preun):	/sbin/chkconfig
 Requires:	exim >= 3.0.0
