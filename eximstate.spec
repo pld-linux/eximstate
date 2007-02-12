@@ -1,6 +1,6 @@
 # TODO: what non-existing directory in /home/services/httpd/html is used for???
 Summary:	Monitoring exim installations
-Summary(pl):	Monitorowanie instalacji exima
+Summary(pl.UTF-8):   Monitorowanie instalacji exima
 Name:		eximstate
 Version:	1.1
 Release:	3
@@ -32,18 +32,18 @@ messages, the number of frozen message, and the number of bounce
 messages to the server. The server stores this data and uses RRDtool
 to make a graphical representations of the data.
 
-%description -l pl
+%description -l pl.UTF-8
 eximstate to klient/serwer do monitorowania instalacji Exima. Klienty
-zainstalowane s± na ka¿dym serwerze poczty pracuj±cym pod kontrol±
-Exima natomiast serwer eximstate na serwerze monitoruj±cym. Ka¿dy
-klient czyta kolejkê na serwerze pocztowym oraz przesy³a informacje o
-ca³kowitej liczbie wiadomo¶ci, liczbie wiadomo¶ci zamro¿onych oraz
-odbitych. Serwer eximstate zapisuje te dane oraz u¿ywa RRDtoola w celu
+zainstalowane sÄ… na kaÅ¼dym serwerze poczty pracujÄ…cym pod kontrolÄ…
+Exima natomiast serwer eximstate na serwerze monitorujÄ…cym. KaÅ¼dy
+klient czyta kolejkÄ™ na serwerze pocztowym oraz przesyÅ‚a informacje o
+caÅ‚kowitej liczbie wiadomoÅ›ci, liczbie wiadomoÅ›ci zamroÅ¼onych oraz
+odbitych. Serwer eximstate zapisuje te dane oraz uÅ¼ywa RRDtoola w celu
 stworzenia graficznej reprezentacji danych.
 
 %package client
 Summary:	eximstate client
-Summary(pl):	Klient eximstate
+Summary(pl.UTF-8):   Klient eximstate
 Group:		Networking
 Requires(post,preun):	/sbin/chkconfig
 Requires:	exim >= 3.0.0
@@ -53,7 +53,7 @@ Requires:	rc-scripts
 eximstate is a server/client project for monitoring a number of Exim
 installations. This package contains client.
 
-%description client -l pl
+%description client -l pl.UTF-8
 eximstate to klient/serwer do monitorowania instalacji Exima. Ten
 pakiet zawiera klienta.
 
